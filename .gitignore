@@ -1,4 +1,5 @@
 resnet_callback/
+inception_callback/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
