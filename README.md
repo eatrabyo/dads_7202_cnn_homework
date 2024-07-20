@@ -1,14 +1,14 @@
 # DADS 7202 Deer Family Image Classification
-* Perform multi-class classification on a total of 4 classes of Deer family images dataset and compare performance between 4 CNN architectures including DenseNet201, ResNet152V2 and VGG16.
-* The objective is to optimize Loss function and performance metric (Accuracy score).
-* The study also include GradCam analysis and Eyeball analysis.
+* Perform multi-class classification on a total of 4 classes of Deer family images dataset and compare the performance of CNN architectures.
+* The objective is to optimize the Loss function and performance metric (Accuracy score).
+* The study also includes GradCam analysis and Eyeball analysis.
 
 ## Dataset
-Total 800 images were used from 4 deer family classes including 200 images from each class (Caribou, Deer, Elk and Moose). We get images using web scraping from 2 main sources which are Bing downloader and Yahoo.
+A total of 800 images were used from 4 deer family classes including 200 images from each class (Caribou, Deer, Elk, and Moose). We get images using web scraping from 2 main sources which are Bing Downloader and Yahoo.
 ![output](https://github.com/user-attachments/assets/926ff6aa-eb1c-4b52-a060-a7ef09ab712b)
 
 ## EDA
-Our dataset are balanced in each class as shown in the figures below.
+Our dataset is balanced in each class as shown in the figures below.
 
 ![Number of Images by Train Class](https://github.com/user-attachments/assets/9b5597f0-3e56-4830-861e-e072d1ebec7f)
 ![Number of Images by Test Class](https://github.com/user-attachments/assets/388f85c9-85a3-4554-8ce5-b8f8f526de27)
@@ -18,26 +18,26 @@ We plot the sizes of images for each class to observe the variation in size.
 ![Train Dataset Image's Siz](https://github.com/user-attachments/assets/acd903b6-ccc2-4f76-a979-7dc4f4962cd7)
 ![Test Dataset Image's Size](https://github.com/user-attachments/assets/5b74c673-d514-4b53-8877-1438f369d87b)
 
-## Spiltting Data
-From the total 800 images (200 images for each class). We split 80:20 by hand. Resulting in 640 images for training and 160 images for testing.
-From 640 training images we split 90:10. Resulting in 576 images for training and 64 images for validation.
-We also rezied all images to be 224 x 224
+## Splitting Data
+From a total of 800 images (200 images for each class). We split 80:20 by hand. Resulting in 640 images for training and 160 images for testing.
+From 640 training images, we split 90:10. Resulting in 576 images for training and 64 images for validation.
+We also resized all images to be 224 x 224
 
 ![image](https://github.com/user-attachments/assets/91bfaab8-6453-4197-85ff-5884a2fb4db3)
 
 ## Data Augmentation
-We using these fuction for augmenting our data
+We using these functions for augmenting our data
   * RandomFlip
   * RandomTranslation
   * RandomRotation
   * RandomZoom
   * RandomBrightness
-  * Resclaling
+  * Rescaling
 
   ![augmentd](https://github.com/user-attachments/assets/1cc3722f-9eb5-4e2b-9c94-571869556e48)
 
 ## Classifier Modification
-We create our own classifier to use with selected CNN models with pre-trained weight from imagenet.
+We create our classifier to use with selected CNN models with pre-trained weight from imagenet.
 1. DenseNet201
 
 ![image](https://github.com/user-attachments/assets/d9b09b2b-c605-45fe-9779-263a0ae5b91e)
@@ -66,7 +66,7 @@ We create our own classifier to use with selected CNN models with pre-trained we
 |      Training on     |                 Last Conv Layer + Classifier                 |                 Last Conv Layer + Classifier                 |                 Last Conv Layer + Classifier                 |
 
 ## Evaluation
-Since classification of deer family have all class equal importance, we use accuracy metric for the evaluation.
+Since the classification of the deer family have all class equal importance, we use an accuracy metric for the evaluation.
 
 ### Learning Curve
 1. DenseNet201
