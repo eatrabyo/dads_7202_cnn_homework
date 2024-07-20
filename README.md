@@ -3,6 +3,12 @@
 * The objective is to optimize the Loss function and performance metric (Accuracy score).
 * The study also includes GradCam analysis and Eyeball analysis.
 
+## Contributors
+* Itthisak Pratukaew
+* Pinyawat Sabsanhor
+* Pisit Kuensuwan
+* Wichanee Maneelok
+
 ## Dataset
 A total of 800 images were used from 4 deer family classes including 200 images from each class (Caribou, Deer, Elk, and Moose). We get images using web scraping from 2 main sources which are Bing Downloader and Yahoo.
 ![output](https://github.com/user-attachments/assets/926ff6aa-eb1c-4b52-a060-a7ef09ab712b)
@@ -116,11 +122,4 @@ Since the classification of the deer family have all class equal importance, we 
 3. VGG16
 
 <img src="https://github.com/user-attachments/assets/bb57d333-fb52-4733-b745-aaac3ef58f7c" width="468" height="312">
-
-
-## Contributions
-* Itthisak Pratukaew
-* Pinyawat Sabsanhor
-* Pisit Kuensuwan
-* Wichanee Maneelok
 
