@@ -46,17 +46,73 @@ We using these functions for augmenting our data
 We create our classifier to use with selected CNN models with pre-trained weight from imagenet.
 1. DenseNet201
 
-![image](https://github.com/user-attachments/assets/d9b09b2b-c605-45fe-9779-263a0ae5b91e)
+```python
+base_densenet_model = DenseNet201(input_shape=(IMG_HEIGHT,IMG_WIDTH,3), 
+                                  weights="imagenet", 
+                                  include_top=False)
+base_model_output = base_densenet_model.output
+
+x = tf.keras.layers.GlobalAveragePooling2D()(base_model_output)
+x = tf.keras.layers.Dropout(0.6)(x)
+x = tf.keras.layers.BatchNormalization()(x)
+x = tf.keras.layers.Dense(512, activation="relu")(x)
+x = tf.keras.layers.Dropout(0.4)(x)
+x = tf.keras.layers.Dense(256, activation="relu")(x)
+x = tf.keras.layers.Dropout(0.2)(x)
+x = tf.keras.layers.Dense(128, activation="relu")(x)
+x = tf.keras.layers.Dropout(0.2)(x)
+x = tf.keras.layers.BatchNormalization()(x)
+x = tf.keras.layers.Dense(64, activation="relu")(x)
+
+new_outputs = tf.keras.layers.Dense(4, activation="softmax")(x)
+custom_densenet_model = tf.keras.models.Model(inputs=base_densenet_model.inputs, outputs=new_outputs)
+```
 
 
 2. ResNet152V2
 
-![image](https://github.com/user-attachments/assets/21669261-951d-44e4-85a6-d582d319fe8f)
+```python
+base_model = ResNet152V2(input_shape=(224,224,3), 
+                         include_top=False,
+                         weights="imagenet"
+                         )
+base_model_output = base_model.output
+
+x = tf.keras.layers.Flatten()(base_model_output)
+x = tf.keras.layers.Dense(1024, activation="relu")(x)
+x = tf.keras.layers.BatchNormalization()(x)
+x = tf.keras.layers.Dense(512, activation="relu")(x)
+x = tf.keras.layers.BatchNormalization()(x)
+x = tf.keras.layers.Dense(256, activation="relu")(x)
+x = tf.keras.layers.BatchNormalization()(x)
+x = tf.keras.layers.Dropout(0.5)(x)
+new_outputs = tf.keras.layers.Dense(4, activation="softmax")(x)
+
+
+model = tf.keras.models.Model(inputs=base_model.inputs, outputs=new_outputs)
+```
 
 
 3. VGG16  
 
-![image](https://github.com/user-attachments/assets/1bc2c4e0-5fb7-4293-bd41-8103a100eab1)
+```python
+model_vgg16=VGG16(input_shape=(224,224,3), 
+                         include_top=False,
+                         pooling='max',
+                         weights="imagenet")
+vgg16_output = model_vgg16.output
+
+x = tf.keras.layers.Flatten()(vgg16_output)
+x = tf.keras.layers.Dense(256, activation="relu")(x)
+x = tf.keras.layers.BatchNormalization()(x)
+x = tf.keras.layers.Dense(128, activation="relu")(x)
+x = tf.keras.layers.BatchNormalization()(x)
+x = tf.keras.layers.Dropout(0.5)(x)
+new_outputs = tf.keras.layers.Dense(4, activation="softmax")(x)
+
+
+model = tf.keras.models.Model(inputs=model_vgg16.inputs, outputs=new_outputs)
+```
 
 ## Training Method
 
